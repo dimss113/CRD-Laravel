@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeacherController;
@@ -64,5 +65,25 @@ Route::prefix('/classroom')->group(function () {
     Route::get('/delete/{id}', [ClassroomController::class,'delete']);
     Route::delete('/delete/{id}', [ClassroomController::class,'destroy']);
 });
+
+Route::middleware('auth')->group(function () {
+    Route::prefix('/barang')->group(function () {
+        // show all barang
+        Route::get('/', [BarangController::class, 'index']);
+    
+        // add barang
+        Route::get('/add', [BarangController::class, 'create']);
+        Route::post('/add', [BarangController::class, 'store']);
+    
+        // edit barang
+        Route::get('/edit/{id}', [BarangController::class, 'edit']);
+        Route::put('/edit/{id}', [BarangController::class, 'update']);
+        Route::get('/detail/{id}', [BarangController::class, 'detail']); 
+        
+        Route::get('/delete/{id}', [BarangController::class, 'delete']);
+        Route::delete('/delete/{id}', [BarangController::class, 'destroy']);
+    });    
+});
+
 
 require __DIR__.'/auth.php';
