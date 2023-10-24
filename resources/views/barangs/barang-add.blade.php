@@ -27,7 +27,7 @@
             @endforeach
           </select>
 
-          <label for="type_id" class="font-[700] text-xl">Condition</label>
+          <label for="type_id" class="font-[700] text-xl">Type</label>
           <select name="type_id" id="type_id" class="w-[100%] outline-none">
             @foreach ($types as $type)
               <option value="{{$type->id}}">{{$type->nama}}</option>

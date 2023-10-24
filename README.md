@@ -7,60 +7,84 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Physical Data Model
+<img width="462" alt="image" src="https://github.com/dimss113/CRD-Laravel/assets/89715780/7d1377a4-b077-4a35-8230-088cafe6cc41">
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## Middleware Auth User
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+> hanya user yang telah login yang dapat melakukan proses CRUD pada barang
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```
+Route::middleware('auth')->group(function () {
+    Route::prefix('/barang')->group(function () {
+        // show all barang
+        Route::get('/', [BarangController::class, 'index']);
+    
+        // add barang
+        Route::get('/add', [BarangController::class, 'create']);
+        Route::post('/add', [BarangController::class, 'store']);
+    
+        // edit barang
+        Route::get('/edit/{id}', [BarangController::class, 'edit']);
+        Route::put('/edit/{id}', [BarangController::class, 'update']);
+        Route::get('/detail/{id}', [BarangController::class, 'detail']); 
+        
+        Route::get('/delete/{id}', [BarangController::class, 'delete']);
+        Route::delete('/delete/{id}', [BarangController::class, 'destroy']);
+    });    
+});
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Register Page (Breeze Blade)
+<img width="429" alt="image" src="https://github.com/dimss113/CRD-Laravel/assets/89715780/310ce8b5-4078-4e83-9ac2-632f64e732e1">
 
-### Premium Partners
+## Login Page (Breeze Blade)
+<img width="379" alt="image" src="https://github.com/dimss113/CRD-Laravel/assets/89715780/5082cdd1-d54b-4885-9fb8-7034b290380a">
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
 
-## Contributing
+## Show All Barang
+<img width="756" alt="image" src="https://github.com/dimss113/CRD-Laravel/assets/89715780/c782806f-6abc-4abf-aec4-1b266472a796">
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+## Show Detailed Barang
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+> ketika user menekan tombol detail maka akan ke redirect ke `/barang/detail/{$barang->id}`
 
-## Security Vulnerabilities
+<img width="752" alt="image" src="https://github.com/dimss113/CRD-Laravel/assets/89715780/7e44a9a7-ac31-4af5-b1cb-52c4053b0816">
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+## Form Add Barang
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<img width="487" alt="image" src="https://github.com/dimss113/CRD-Laravel/assets/89715780/6799a246-ba47-4279-b645-fd7f7defe6da">
+
+### Dropdown
+> Condition Dropdown
+
+<img width="427" alt="image" src="https://github.com/dimss113/CRD-Laravel/assets/89715780/c19175bc-51b4-49d0-9cf2-ed21320462e3">
+
+> Type Dropdown
+
+<img width="474" alt="image" src="https://github.com/dimss113/CRD-Laravel/assets/89715780/669df0fd-a956-4c66-a9df-33df5bd6affd">
+
+## Edit Barang
+
+<img width="470" alt="image" src="https://github.com/dimss113/CRD-Laravel/assets/89715780/007ad988-a85a-47a5-8aef-ff4a43a2695b">
+
+## Flash Message
+> Gagal menyimpan karena ukuran gambar lebih dari 2 mb
+
+<img width="755" alt="image" src="https://github.com/dimss113/CRD-Laravel/assets/89715780/5d7fa413-f8d3-4438-8de2-12daff661179">
+
+> Berhasil menyimpan
+<img width="749" alt="image" src="https://github.com/dimss113/CRD-Laravel/assets/89715780/49a612bb-6f9f-4b4b-af32-722dbe426fef">
+
+> Berhasil update data
+<img width="760" alt="image" src="https://github.com/dimss113/CRD-Laravel/assets/89715780/f2641bf1-f674-4fb3-a4a8-7c80eb3817be">
+
+> Berhasil delete data
+<img width="765" alt="image" src="https://github.com/dimss113/CRD-Laravel/assets/89715780/6a010b55-e437-4a1e-a6cb-225de3038a78">

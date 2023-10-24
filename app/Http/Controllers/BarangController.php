@@ -113,7 +113,7 @@ class BarangController extends Controller
             'type_id' => $request->type_id,
         ]);
 
-        return redirect('/barang');
+        return redirect('/barang')->with('success', 'Data updated succesfully');
     }
 
     public function detail($id)
@@ -139,6 +139,6 @@ class BarangController extends Controller
 
         $barang->delete();
 
-        return redirect('/barang');
+        return redirect('/barang')->with('success', 'Data deleted succesfully');
     }
 }

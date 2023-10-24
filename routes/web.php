@@ -24,47 +24,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// create group route teacher
-Route::prefix('/teacher')->group(function () {
-
-    // Show all Teacher
-    Route::get('/', [TeacherController::class, 'index']);
-    
-    // Add Teacher
-    Route::get('/add', function () {
-        return view('teacher.teacher-add');
-    });  
-
-    Route::post('/add', [TeacherController::class, 'store']);
-
-    // Edit Teacher
-    Route::get('/edit/{id}', [TeacherController::class, 'edit']);
-
-    Route::put('/edit/{id}', [TeacherController::class, 'update']);
-    
-    // Delete Teacher
-    Route::get('/delete/{id}', [TeacherController::class, 'delete']);
-    Route::delete('/delete/{id}', [TeacherController::class, 'destroy']);
-});
-
-Route::prefix('/classroom')->group(function () {
-
-    // show all classroom
-    Route::get('/', [ClassroomController::class, 'index']);
-
-    // add classroom
-    Route::get('/add', [ClassroomController::class,'create']);
-    Route::post('/add', [ClassroomController::class,'store']);
-    Route::get('/detail/{id}', [ClassroomController::class,'detail']);
-
-    // edit classroom
-    Route::get('/edit/{id}', [ClassroomController::class,'edit']);
-    Route::put('/edit/{id}', [ClassroomController::class,'update']);
-
-    // delete classroom
-    Route::get('/delete/{id}', [ClassroomController::class,'delete']);
-    Route::delete('/delete/{id}', [ClassroomController::class,'destroy']);
-});
 
 Route::middleware('auth')->group(function () {
     Route::prefix('/barang')->group(function () {
